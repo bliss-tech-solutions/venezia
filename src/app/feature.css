@@ -1,0 +1,121 @@
+/* =====================================================================
+   3D floor showcase
+   ===================================================================== */
+
+.showcase {
+  background: #fff;
+  color: var(--text-dark);
+  overflow: hidden;
+}
+.showcase .eyebrow {
+  color: var(--navy);
+}
+.showcase .display em,
+.showcase .btn--link {
+  color: var(--sky-ink);
+}
+.showcase__head {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(32px, 6vw, 96px);
+  align-items: end;
+  margin-bottom: clamp(40px, 5vw, 72px);
+}
+.showcase__intro p {
+  margin: 0 0 22px;
+  max-width: 30em;
+  font-size: var(--t-md);
+  color: var(--text-dark-dim);
+}
+.showcase__stage {
+  perspective: 1600px;
+}
+.showcase__frame {
+  position: relative;
+  aspect-ratio: 2400 / 1792;
+  max-height: 82vh;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #efefef;
+  transform-origin: 50% 100%;
+  box-shadow: 0 60px 120px -60px rgba(15, 37, 86, 0.45);
+}
+.showcase__pins {
+  position: absolute;
+  inset: 0;
+}
+.spin {
+  position: absolute;
+  translate: -50% -50%;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+}
+.spin__dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--navy);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.9);
+  animation: spinPulse 2.4s var(--ease) infinite;
+}
+.spin.is-on .spin__dot {
+  background: var(--sky-ink);
+}
+@keyframes spinPulse {
+  0% {
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.9), 0 0 0 4px rgba(15, 37, 86, 0.35);
+  }
+  100% {
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.9), 0 0 0 18px rgba(15, 37, 86, 0);
+  }
+}
+.spin__card {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  translate: -50% 0;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: var(--navy);
+  color: #fff;
+  white-space: nowrap;
+  text-align: left;
+  pointer-events: none;
+  box-shadow: 0 16px 40px -16px rgba(7, 18, 51, 0.6);
+}
+.spin__card strong {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: var(--t-md);
+}
+.spin__card small {
+  font-size: var(--t-micro);
+  color: rgba(255, 255, 255, 0.75);
+}
+.showcase__note {
+  margin: 18px 0 0;
+  text-align: center;
+  font-size: var(--t-micro);
+  letter-spacing: 0.06em;
+  color: var(--text-dark-dim);
+}
+@media (max-width: 960px) {
+  .showcase__head {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 720px) {
+  .spin {
+    width: 22px;
+    height: 22px;
+  }
+  .spin__dot {
+    width: 10px;
+    height: 10px;
+  }
+}
