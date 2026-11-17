@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { PageHero, CtaBand } from "@/components/site/Blocks";
 import { AboutStory, Journey, Manifesto, Pillars } from "@/components/about/AboutSections";
 import { Developer } from "@/components/home/ScrollSections";
 
-export const metadata: Metadata = {
-  title: "About Us",
-  description: "RM Enterprise, a Manek project: the developer and agencies behind The Venezia, S.G. Highway, Adalaj.",
-};
+export const metadata: Metadata = pageMeta({
+  title: "About the Developer — RM Enterprise",
+  description: "Meet RM Enterprise, a Manek project, and the agencies behind The Venezia, Adalaj: eye-catching architecture, spacious 2 BHK homes and true longevity.",
+  path: "/about",
+  socialTitle: "About The Venezia — a home that has no equal",
+  keywords: ["RM Enterprise Gandhinagar", "Manek builders", "Innovatiq Architects", "real estate developer Adalaj"],
+});
 
 export default function AboutPage() {
   return (
     <main>
+      <BreadcrumbJsonLd name="About" path="/about" />
       <PageHero
         crumb="About"
         eyebrow="About us"

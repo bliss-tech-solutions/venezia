@@ -5,6 +5,8 @@ import "./premium.css";
 import "./brand.css";
 import "./feature.css";
 import { SiteShell } from "@/components/site/SiteShell";
+import { SiteJsonLd } from "@/components/seo/JsonLd";
+import { BASE_KEYWORDS, DEFAULT_DESCRIPTION, DEFAULT_TITLE, NOINDEX, SITE_LOCALE, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 const display = Outfit({
   subsets: ["latin"],
@@ -21,14 +23,37 @@ const sans = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
-  title: { default: "The Venezia — 2 BHK Residences, S.G. Highway, Adalaj", template: "%s · The Venezia" },
-  description:
-    "280 premium 2 BHK residences in five towers on S.G. Highway, Adalaj, with 30+ amenities across 21,500 sq ft. Explore every floor with live availability, 3D plans and 360° interiors.",
+  metadataBase: new URL(SITE_URL),
+  title: { default: DEFAULT_TITLE, template: `%s · ${SITE_NAME}` },
+  description: DEFAULT_DESCRIPTION,
+  applicationName: SITE_NAME,
+  keywords: BASE_KEYWORDS,
+  authors: [{ name: "RM Enterprise" }],
+  creator: "RM Enterprise",
+  publisher: "RM Enterprise",
+  category: "Real Estate",
+  alternates: { canonical: "/" },
+  robots: NOINDEX
+    ? { index: false, follow: false }
+    : {
+        index: true,
+        follow: true,
+        googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+      },
   openGraph: {
-    title: "The Venezia",
-    description: "Where serenity flows in everyday life. 2 BHK residences on S.G. Highway, Adalaj.",
-    images: ["/images/og.jpg"],
+    type: "website",
+    siteName: SITE_NAME,
+    locale: SITE_LOCALE,
+    url: "/",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+  },
+  twitter: { card: "summary_large_image", title: DEFAULT_TITLE, description: DEFAULT_DESCRIPTION },
+  // Google Search Console: set NEXT_PUBLIC_GSC_VERIFICATION to the token from the HTML-tag method
+  verification: process.env.NEXT_PUBLIC_GSC_VERIFICATION ? { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION } : undefined,
+  other: {
+    "geo.region": "IN-GJ",
+    "geo.placename": "Adalaj, Gandhinagar",
   },
 };
 
@@ -38,8 +63,9 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable}`}>
+    <html lang="en-IN" className={`${display.variable} ${sans.variable}`}>
       <body>
+        <SiteJsonLd />
         <SiteShell>{children}</SiteShell>
       </body>
     </html>

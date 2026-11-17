@@ -1,19 +1,24 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { PageHero, CtaBand } from "@/components/site/Blocks";
 import { AmenityList, AmenitySpotlights, CampusFeatures } from "@/components/site/Extras";
 import { AmenityArea, Chapters } from "@/components/home/ScrollSections";
 import { Masterplan } from "@/components/sections/Masterplan";
 import { Retail } from "@/components/sections/Retail";
 
-export const metadata: Metadata = {
-  title: "Amenities",
-  description:
-    "30+ resort-style amenities across 21,500 sq ft: water body, party lawn, clubhouse, gymnasium, box cricket, multipurpose court, banquet and satsang halls.",
-};
+export const metadata: Metadata = pageMeta({
+  title: "30+ Amenities across 21,500 sq ft",
+  description: "Resort-style amenities at The Venezia, Adalaj: water body, party lawn, clubhouse, gym, box cricket, banquet and satsang halls, across 21,500 sq ft.",
+  path: "/amenities",
+  socialTitle: "The Venezia — 30+ resort-style amenities across 21,500 sq ft",
+  keywords: ["flats with clubhouse Adalaj", "gated community amenities Gandhinagar", "2 BHK with gym and garden", "box cricket society Gandhinagar"],
+});
 
 export default function AmenitiesPage() {
   return (
     <main>
+      <BreadcrumbJsonLd name="Amenities" path="/amenities" />
       <PageHero
         crumb="Amenities"
         eyebrow="Resort-style amenities"
