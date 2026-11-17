@@ -1,12 +1,12 @@
 "use client";
 
+import { FlyLogo } from "./FlyLogo";
 import Image from "next/image";
 import { motion, useInView, useMotionValueEvent, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Counter, FadeUp, Magnetic, SplitText, ease, useRange, useSiteReady } from "../motion";
 import { TLink, usePageTransition } from "../site/PageTransition";
 import { Arrow } from "../site/Icon";
-import { Logo } from "../Logo";
 import { SectionHead } from "../site/Blocks";
 import { useExplorer } from "../explorer/ExplorerContext";
 import { agencies, chapters, developer, img, neighbourhood, spotlights } from "@/data/content";
@@ -66,7 +66,6 @@ export function HeroScroll() {
   const frameO = useRange(p, [0, 0.18], [1, 0]);
   const brandO = useRange(p, [0.04, 0.32], [1, 0]);
   const brandY = useRange(p, [0, 0.4], [0, -60]);
-  const brandS = useRange(p, [0, 0.4], [1, 0.88]);
   const sideO = useRange(p, [0, 0.12], [1, 0]);
   const bgScale = useRange(p, [0, 1], [1, 1.2]);
   const shade = useRange(p, [0.42, 0.75], [0, 1]);
@@ -143,13 +142,17 @@ export function HeroScroll() {
           </motion.p>
         </motion.div>
 
-        <motion.div className="shero__brand" style={{ opacity: brandO, y: brandY, scale: brandS }}>
+        <div className="shero__brand">
           <h1 className="sr-only">The Venezia: 2 BHK residences on S.G. Highway, Adalaj</h1>
-          <Logo animate play={ready} delay={0.35} className="shero__logo" />
-          <motion.p className="shero__sub" {...show(1.25)}>
-            2 BHK Residences <i /> Retail <i /> 30+ Amenities
-          </motion.p>
-        </motion.div>
+          {/* the logo itself is drawn by <FlyLogo>, which lands here and then flies to the navbar */}
+          <div className="shero__logo shero__slot" data-logo-slot="hero" />
+          <motion.div style={{ opacity: brandO, y: brandY }}>
+            <motion.p className="shero__sub" {...show(1.25)}>
+              2 BHK Residences <i /> Retail <i /> 30+ Amenities
+            </motion.p>
+          </motion.div>
+        </div>
+        <FlyLogo heroRef={ref} />
 
         <motion.div className="shero__final container" style={{ opacity: finalO, y: finalY, pointerEvents: finalPE }}>
           <div className="shero__final-copy">
@@ -466,8 +469,8 @@ export function Spotlights() {
   useEffect(() => {
     const measure = () => {
       if (!track.current) return;
-      const pinned = window.matchMedia("(min-width: 961px)").matches;
-      setDist(pinned ? Math.max(0, track.current.scrollWidth - window.innerWidth) : 0);
+      // pinned at every width: vertical scroll drives the track sideways
+      setDist(Math.max(0, track.current.scrollWidth - window.innerWidth));
     };
     measure();
     const ro = new ResizeObserver(measure);
@@ -480,7 +483,7 @@ export function Spotlights() {
   }, []);
 
   return (
-    <section ref={wrap} className="spot" style={{ height: dist ? `calc(100vh + ${dist}px)` : undefined }}>
+    <section ref={wrap} className="spot" style={{ height: dist ? `calc(100svh + ${dist}px)` : undefined }}>
       <div className="spot__sticky">
         <div className="container spot__head">
           <div>

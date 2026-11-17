@@ -68,7 +68,6 @@ export const site = {
   group: "Manek",
   contact: {
     phone: "+91 90700 78700",
-    phone2: "+91 90990 75185",
     address: "B/h. Swarnim Greens, Nr. Narmada Canal, S.G. Highway, Adalaj – 382421",
     short: "S.G. Highway, Adalaj",
   },

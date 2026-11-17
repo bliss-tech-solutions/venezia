@@ -48,9 +48,6 @@ export function Footer() {
             <a className="ulink" href={`tel:${site.contact.phone.replace(/\s/g, "")}`}>
               {site.contact.phone}
             </a>
-            <a className="ulink" href={`tel:${site.contact.phone2.replace(/\s/g, "")}`}>
-              {site.contact.phone2}
-            </a>
             <p>{site.contact.address}</p>
           </div>
 

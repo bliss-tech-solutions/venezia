@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { motion, useScroll } from "framer-motion";
 import { useRef } from "react";
+import { usePathname } from "next/navigation";
+import { nav } from "@/data/content";
 import { FadeUp, Magnetic, SplitText, ease, useRange, useSiteReady } from "../motion";
 import { TLink } from "./PageTransition";
 import { Arrow } from "./Icon";
@@ -29,6 +31,8 @@ export function PageHero({
 }) {
   const ref = useRef<HTMLElement>(null);
   const ready = useSiteReady();
+  const pathname = usePathname();
+  const pageNo = nav.findIndex((n) => n.href === pathname) + 1;
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useRange(scrollYProgress, [0, 1], ["0%", "30%"]);
   const fade = useRange(scrollYProgress, [0, 0.7], [1, 0]);
@@ -46,16 +50,39 @@ export function PageHero({
       </motion.div>
       <div className="phero__shade" />
       <motion.div className="container phero__copy" style={{ opacity: fade }}>
-        <motion.p
+        <motion.nav
           className="crumb"
+          aria-label="Breadcrumb"
           initial={{ opacity: 0, y: 14 }}
           animate={ready ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: 0.9, ease, delay: 0.2 }}
         >
-          <TLink href="/">Home</TLink>
-          <i />
-          <span>{crumb}</span>
-        </motion.p>
+          <ol>
+            <li>
+              <TLink href="/" className="crumb__home">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 11.5 12 5l8 6.5M6.5 9.8V19h4v-5h3v5h4V9.8" />
+                </svg>
+                <span>Home</span>
+              </TLink>
+            </li>
+            <li className="crumb__sep" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="m9 6 6 6-6 6" />
+              </svg>
+            </li>
+            <li>
+              <span className="crumb__current" aria-current="page">
+                {crumb}
+              </span>
+            </li>
+          </ol>
+          {pageNo > 0 && (
+            <span className="crumb__index" aria-hidden="true">
+              <strong>{String(pageNo).padStart(2, "0")}</strong> / {String(nav.length).padStart(2, "0")}
+            </span>
+          )}
+        </motion.nav>
         <motion.p
           className="eyebrow"
           initial={{ opacity: 0, y: 14 }}

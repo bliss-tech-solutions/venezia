@@ -119,3 +119,161 @@
     height: 10px;
   }
 }
+
+/* =====================================================================
+   Breadcrumb — glass pill on inner-page heroes
+   ===================================================================== */
+
+.crumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px 18px;
+  margin: 0 0 28px;
+}
+.crumb ol {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  box-shadow: 0 12px 30px -18px rgba(7, 18, 51, 0.7);
+}
+.crumb li {
+  display: flex;
+}
+.crumb__home,
+.crumb__current {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 34px;
+  padding: 0 16px;
+  border-radius: 999px;
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.crumb__home {
+  padding-left: 12px;
+  color: rgba(255, 255, 255, 0.78);
+  transition: background 0.4s var(--ease), color 0.4s var(--ease);
+}
+.crumb__home:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+.crumb__home svg {
+  width: 15px;
+  height: 15px;
+}
+.crumb__home path,
+.crumb__sep path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.crumb__sep {
+  align-items: center;
+  color: rgba(255, 255, 255, 0.45);
+}
+.crumb__sep svg {
+  width: 14px;
+  height: 14px;
+}
+.crumb__current {
+  background: #fff;
+  color: var(--navy);
+  box-shadow: 0 6px 16px -8px rgba(7, 18, 51, 0.6);
+}
+.crumb__index {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  font-family: var(--f-display);
+  font-size: var(--t-sm);
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.55);
+}
+.crumb__index strong {
+  font-weight: 400;
+  font-size: var(--t-md);
+  color: #fff;
+}
+.crumb__index::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  margin-right: 10px;
+  align-self: center;
+  background: rgba(255, 255, 255, 0.3);
+}
+@media (max-width: 720px) {
+  .crumb__home,
+  .crumb__current {
+    height: 30px;
+    padding: 0 12px;
+    letter-spacing: 0.12em;
+  }
+  .crumb__home {
+    padding-left: 10px;
+  }
+}
+
+/* =====================================================================
+   Flying logo (home): splash → hero → navbar
+   ===================================================================== */
+
+.flylogo {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 52; /* above the header (50), below explorer overlays (60+) and the page curtain */
+  color: #fff;
+  pointer-events: none;
+  visibility: hidden;
+  will-change: transform, width;
+}
+.flylogo.is-placed {
+  visibility: visible;
+}
+.flylogo.is-intro {
+  z-index: 210; /* above the splash screen while it lifts */
+}
+.flylogo .logo {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 8px 30px rgba(7, 18, 51, 0.45));
+}
+
+/* placeholders keep the exact size the logo should have in each place */
+.preloader__slot,
+.shero__slot {
+  aspect-ratio: 860 / 284;
+  height: auto;
+}
+
+/* hand-over with the real header logo */
+html.logo-flying:not(.logo-docked) .header__brand .logo {
+  visibility: hidden;
+}
+html.logo-docked .flylogo {
+  visibility: hidden;
+}
+/* mobile menu: show the header's own logo, hide the flying one */
+html.menu-open .header__brand .logo {
+  visibility: visible !important;
+}
+html.menu-open .flylogo {
+  opacity: 0;
+}

@@ -13,7 +13,6 @@ import { site } from "@/data/project";
 export function Header() {
   const pathname = usePathname();
   const [solid, setSolid] = useState(false);
-  const [heroBrand, setHeroBrand] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
   const [hoverLink, setHoverLink] = useState<string | null>(null);
@@ -24,10 +23,11 @@ export function Header() {
     const onScroll = () => {
       const y = window.scrollY;
       setSolid(y > 60);
-      // on the home page the hero carries the logo; the header shows it once that has scrolled away
-      setHeroBrand(window.location.pathname === "/" && y < window.innerHeight * 0.55);
-      // hide when scrolling down past the hero, reveal on any upward scroll
-      setHidden(y > window.innerHeight * 0.5 && y > lastY.current + 4);
+      // hide when scrolling down, reveal on any upward scroll. On the home page the header stays put
+      // through the pinned hero, because the logo is flying into it.
+      const hero = window.location.pathname === "/" ? (document.querySelector(".shero") as HTMLElement | null) : null;
+      const keep = hero ? hero.offsetHeight - window.innerHeight : 0;
+      setHidden(y > Math.max(window.innerHeight * 0.5, keep) && y > lastY.current + 4);
       if (y < lastY.current - 4 || y < 80) setHidden(false);
       lastY.current = y;
     };
@@ -53,7 +53,7 @@ export function Header() {
   return (
     <>
       <header
-        className={`header ${heroBrand && !open ? "header--herobrand" : ""} ${solid ? "header--solid" : ""} ${hidden && !open ? "header--hidden" : ""} ${open ? "header--open" : ""}`}
+        className={`header ${solid ? "header--solid" : ""} ${hidden && !open ? "header--hidden" : ""} ${open ? "header--open" : ""}`}
       >
         <TLink href="/" className="header__brand" onClick={go} aria-label="The Venezia — home">
           <Wordmark />
@@ -129,7 +129,6 @@ export function Header() {
               transition={{ duration: 0.8, ease, delay: 0.6 }}
             >
               <a href={`tel:${site.contact.phone.replace(/\s/g, "")}`}>{site.contact.phone}</a>
-              <a href={`tel:${site.contact.phone2.replace(/\s/g, "")}`}>{site.contact.phone2}</a>
               <button
                 className="btn btn--gold"
                 onClick={() => {

@@ -500,27 +500,6 @@ html.menu-open {
   color: rgba(255, 255, 255, 0.78);
   font-size: var(--t-base);
 }
-.crumb {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 0 0 26px;
-  font-size: var(--t-label);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-}
-.crumb a:hover {
-  color: #fff;
-}
-.crumb i {
-  width: 18px;
-  height: 1px;
-  background: var(--line-strong);
-}
-.crumb span {
-  color: #fff;
-}
 .phero__cue {
   position: absolute;
   right: var(--pad);

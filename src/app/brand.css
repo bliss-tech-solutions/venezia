@@ -879,7 +879,8 @@ em {
   position: sticky;
   top: 0;
   height: 100vh;
-  min-height: 640px;
+  height: 100svh;
+  min-height: 560px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1420,41 +1421,16 @@ em {
     grid-template-columns: 1fr 1fr;
   }
 
-  /* horizontal spotlight: native swipe on touch */
-  .spot {
-    height: auto !important;
-    padding: 96px 0;
-  }
-  .spot__sticky {
-    position: relative;
-    height: auto;
-    min-height: 0;
-  }
+  /* horizontal spotlight stays pinned on tablets and phones too */
   .spot__head {
-    flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end;
     gap: 16px;
   }
-  .spot__count,
-  .spot__progress {
-    display: none;
-  }
-  .spot__track {
-    width: auto;
-    transform: none !important;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-  }
-  .spot__track::-webkit-scrollbar {
-    display: none;
-  }
   .scard {
-    width: 78vw;
-    scroll-snap-align: start;
+    width: min(72vw, 420px);
   }
   .scard--more {
-    width: 60vw;
+    width: min(52vw, 280px);
   }
 }
 
@@ -1494,20 +1470,34 @@ em {
 
 /* ---------- fixes after visual review ---------- */
 
-/* statement: headline spans the width, copy sits in the right column */
+/* statement: headline left, intro right, vertically centred, hairline between */
 .statement__grid {
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(40px, 6vw, 112px);
+  align-items: center;
 }
 .statement__grid > :first-child {
-  grid-column: 1 / -1;
+  grid-column: 1;
 }
 .statement__copy {
   grid-column: 2;
-  max-width: 34em;
+  max-width: 36em;
+  padding-left: clamp(28px, 3.5vw, 56px);
+  border-left: 1px solid var(--line-dark);
+}
+.statement__copy .lead {
+  margin-top: 0;
 }
 @media (max-width: 960px) {
+  .statement__grid {
+    gap: 28px;
+  }
   .statement__copy {
     grid-column: 1;
+    padding-left: 0;
+    padding-top: 24px;
+    border-left: 0;
+    border-top: 1px solid var(--line-dark);
   }
 }
 
@@ -1620,4 +1610,38 @@ em {
 }
 .header--solid .header__brand .logo {
   height: 38px;
+}
+
+/* pinned horizontal scroll on phones: tighter rhythm so head + card fit one screen */
+@media (max-width: 720px) {
+  .spot__sticky {
+    gap: 22px;
+  }
+  .spot__head .display {
+    font-size: var(--t-2xl);
+  }
+  .spot__count {
+    font-size: var(--t-sm);
+  }
+  .spot__count strong {
+    font-size: var(--t-xl);
+  }
+  .spot__track {
+    gap: 14px;
+  }
+  .scard {
+    width: 78vw;
+    gap: 14px;
+  }
+  .scard__body {
+    grid-template-columns: 32px 1fr;
+  }
+  .scard--more {
+    width: 56vw;
+    padding: 22px;
+  }
+  .spot__progress::before,
+  .spot__progress span {
+    inset: 0 var(--pad);
+  }
 }

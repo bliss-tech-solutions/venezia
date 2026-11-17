@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
 
 /** Branded intro: the wing mark draws itself while a counter runs, then the curtain lifts. */
@@ -8,6 +9,7 @@ export function Preloader() {
   const [pct, setPct] = useState(0);
   const [done, setDone] = useState(false);
   const [gone, setGone] = useState(false);
+  const home = usePathname() === "/";
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -46,7 +48,11 @@ export function Preloader() {
   return (
     <div className={`preloader ${done ? "preloader--out" : ""}`} aria-hidden="true">
       <div className="preloader__inner">
-        <Logo animate className="preloader__logo" />
+        {home ? (
+          <div className="preloader__logo preloader__slot" data-logo-slot="preloader" />
+        ) : (
+          <Logo animate className="preloader__logo" />
+        )}
         <div className="preloader__bar">
           <span style={{ transform: `scaleX(${pct / 100})` }} />
         </div>

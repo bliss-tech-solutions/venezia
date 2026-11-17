@@ -52,10 +52,6 @@ export function Enquire() {
               <a href={`tel:${site.contact.phone.replace(/\s/g, "")}`}>{site.contact.phone}</a>
             </li>
             <li>
-              <span>Also</span>
-              <a href={`tel:${site.contact.phone2.replace(/\s/g, "")}`}>{site.contact.phone2}</a>
-            </li>
-            <li>
               <span>Visit</span>
               <p>{site.contact.address}</p>
             </li>
