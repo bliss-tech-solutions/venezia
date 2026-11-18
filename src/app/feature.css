@@ -277,3 +277,263 @@ html.menu-open .header__brand .logo {
 html.menu-open .flylogo {
   opacity: 0;
 }
+
+/* =====================================================================
+   Amenities page: category tabs with icon tiles
+   ===================================================================== */
+
+.atabs {
+  min-width: 0;
+}
+.atabs__nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  padding: 5px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid var(--line-dark);
+  box-shadow: 0 20px 40px -32px rgba(15, 37, 86, 0.35);
+}
+.atabs__tab {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  text-align: left;
+  color: var(--text-dark-dim);
+  transition: color 0.35s var(--ease);
+}
+.atabs__tab:hover {
+  color: var(--navy);
+}
+.atabs__tab.is-on {
+  color: #fff;
+}
+.atabs__pill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--navy);
+  box-shadow: 0 10px 24px -12px rgba(15, 37, 86, 0.6);
+}
+.atabs__label,
+.atabs__count {
+  position: relative;
+}
+.atabs__label {
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.35;
+}
+.atabs__count {
+  font-family: var(--f-display);
+  font-weight: 300;
+  font-size: var(--t-xl);
+  line-height: 1;
+}
+.atabs__tab.is-on .atabs__count {
+  color: var(--sky);
+}
+.atabs__panel {
+  margin-top: 28px;
+  min-height: 420px;
+}
+.atabs__head {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding-bottom: 22px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--line-dark);
+}
+.atabs__big {
+  font-family: var(--f-display);
+  font-weight: 300;
+  font-size: var(--t-4xl);
+  line-height: 0.9;
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
+}
+.atabs__head h3 {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: var(--t-xl);
+  line-height: 1.2;
+  color: var(--text-dark);
+}
+.atabs__head p {
+  margin: 4px 0 0;
+  font-size: var(--t-sm);
+  color: var(--text-dark-dim);
+}
+.atiles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.atile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 132px;
+  padding: 18px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid var(--line-dark);
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease), border-color 0.4s;
+}
+.atile:hover {
+  transform: translateY(-4px);
+  border-color: transparent;
+  box-shadow: 0 24px 44px -26px rgba(15, 37, 86, 0.45);
+}
+.atile__ico {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #eef4fb;
+  color: var(--navy);
+  transition: background 0.4s, color 0.4s;
+}
+.atile:hover .atile__ico {
+  background: var(--navy);
+  color: #fff;
+}
+.atile__icon {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.atile__name {
+  margin-top: auto;
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: var(--t-md);
+  line-height: 1.25;
+  color: var(--text-dark);
+}
+.atile__n {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--sky-ink);
+  opacity: 0.7;
+}
+.atabs__sum {
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line-dark);
+}
+.atabs__sum p {
+  margin: 0 0 12px;
+  font-size: var(--t-sm);
+  color: var(--text-dark-dim);
+}
+.atabs__sum strong {
+  color: var(--navy);
+  font-weight: 600;
+}
+.atabs__bar {
+  display: flex;
+  gap: 4px;
+  height: 8px;
+}
+.atabs__bar button {
+  flex-basis: 0;
+  border-radius: 999px;
+  background: rgba(15, 37, 86, 0.14);
+  transition: background 0.4s var(--ease);
+}
+.atabs__bar button:hover {
+  background: rgba(15, 37, 86, 0.3);
+}
+.atabs__bar button.is-on {
+  background: linear-gradient(90deg, var(--sky-ink), var(--navy));
+}
+@media (max-width: 1180px) {
+  .atiles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 720px) {
+  .atabs__nav {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .atabs__panel {
+    min-height: 0;
+  }
+  .atiles {
+    gap: 10px;
+  }
+  .atile {
+    min-height: 116px;
+    padding: 14px;
+  }
+  .atile__ico {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* amenity tiles as horizontal rows: icon · name · number */
+.atiles {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 14px;
+}
+.atile {
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  min-height: 0;
+  padding: 12px 18px 12px 12px;
+}
+.atile:hover {
+  transform: translateX(4px);
+}
+.atile__ico {
+  flex: none;
+}
+.atile__name {
+  flex: 1;
+  margin-top: 0;
+}
+.atile__n {
+  position: static;
+  flex: none;
+}
+@media (max-width: 1180px) {
+  .atiles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 720px) {
+  .atiles {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .atile {
+    min-height: 0;
+    padding: 10px 14px 10px 10px;
+    gap: 14px;
+  }
+}

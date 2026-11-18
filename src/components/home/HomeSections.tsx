@@ -37,7 +37,7 @@ export function ResidencesPreview() {
               Three plans. <em>One standard.</em>
             </>
           }
-          intro="Every home is a considered 2 BHK: a private foyer, a generous drawing room opening to the balcony, kitchen with dining, two bedrooms and a dedicated wash area."
+          intro="Every home is a considered 2 BHK a private foyer, a generous drawing room opening to the balcony, kitchen with dining, two bedrooms and a dedicated wash area."
         />
 
         <div className="respreview__feature">
