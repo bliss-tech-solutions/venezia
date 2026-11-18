@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Logo } from "../Logo";
 import { TLink } from "../site/PageTransition";
 import { useLenis } from "../site/SmoothScroll";
@@ -65,22 +66,33 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="footer__bottom">
-          <p>
-            © {new Date().getFullYear()} {site.name}. All rights reserved.
+        {/* legal: RERA + disclaimer as one quiet line of fine print */}
+        <p className="footer__legal">
+          <span className="footer__rera" title={site.rera}>
+            {site.reraShort}
+          </span>
+          All images are artist&rsquo;s impressions. Plans, dimensions and availability are indicative and subject to
+          change. This website does not constitute an offer or contract.
+        </p>
+
+        {/* one bar: copyright · agency credit · back to top */}
+        <div className="footer__bar">
+          <p className="footer__copy">
+            © {new Date().getFullYear()} {site.name} by {site.developer}. All rights reserved.
           </p>
-          <p title={site.rera}>{site.reraShort}</p>
-          <p className="footer__disclaimer">
-            All images are artist&rsquo;s impressions. Plans, dimensions and availability are indicative and subject to
-            change. This website does not constitute an offer or contract.
-          </p>
-          <Magnetic>
-            <button className="footer__totop" onClick={top} aria-label="Back to top">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 19V5M6 11l6-6 6 6" />
-              </svg>
-            </button>
-          </Magnetic>
+          <div className="footer__bar-end">
+            <p className="footer__made">
+              <span>Designed &amp; developed by</span>
+              <Image src="/icons/BlissLogo.webp" alt="The Bliss Solution" width={96} height={32} className="footer__bliss" />
+            </p>
+            <Magnetic>
+              <button className="footer__totop" onClick={top} aria-label="Back to top">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 19V5M6 11l6-6 6 6" />
+                </svg>
+              </button>
+            </Magnetic>
+          </div>
         </div>
       </div>
     </footer>
