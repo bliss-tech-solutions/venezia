@@ -67,7 +67,8 @@ export function HeroScroll() {
   const brandO = useRange(p, [0.04, 0.32], [1, 0]);
   const brandY = useRange(p, [0, 0.4], [0, -60]);
   const sideO = useRange(p, [0, 0.12], [1, 0]);
-  const bgScale = useRange(p, [0, 1], [1, 1.2]);
+  const bgScale = useRange(p, [0, 0.65], [1, 1.08]);
+  const bgO = useRange(p, [0.45, 0.62], [1, 0]);
   const shade = useRange(p, [0.42, 0.75], [0, 1]);
   const finalO = useRange(p, [0.6, 0.8], [0, 1]);
   const finalY = useRange(p, [0.6, 0.84], [40, 0]);
@@ -82,7 +83,7 @@ export function HeroScroll() {
   return (
     <section ref={ref} className="shero" aria-label="The Venezia">
       <div className="shero__stage">
-        <motion.div className="shero__bg" style={{ scale: bgScale }}>
+        <motion.div className="shero__bg" style={{ scale: bgScale, opacity: bgO }}>
           <Image src={img.waves} alt="" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
         </motion.div>
 
@@ -168,7 +169,7 @@ export function HeroScroll() {
                 <dt>Residences</dt>
               </div>
               <div>
-                <dd>05</dd>
+                <dd>{totals.towers}</dd>
                 <dt>Towers</dt>
               </div>
               <div>
@@ -216,7 +217,7 @@ export function Statement() {
         <div className="statement__grid">
           <div>
             <FadeUp y={16}>
-              <p className="eyebrow eyebrow--line">01 — The address</p>
+              <p className="eyebrow eyebrow--line">The address</p>
             </FadeUp>
             <SplitText as="h2" className="display statement__title">
               live <br />
@@ -327,9 +328,6 @@ function Chapter({ c, i, n }: { c: (typeof chapters)[number]; i: number; n: numb
         <div className="chap__shade" />
         <motion.div className="chap__dim" style={{ opacity: dim }} />
         <div className="container chap__copy">
-          <span className="chap__count">
-            {String(i + 1).padStart(2, "0")} <i /> {String(n).padStart(2, "0")}
-          </span>
           <div className="chap__head">
             <FadeUp y={24}>
               <p className="chap__kicker">{c.kicker}</p>
@@ -405,7 +403,7 @@ export function AmenityArea() {
       <div className="container area__grid">
         <div className="area__copy">
           <FadeUp y={16}>
-            <p className="eyebrow eyebrow--line">02 — Upscaled amenities</p>
+            <p className="eyebrow eyebrow--line">Upscaled amenities</p>
           </FadeUp>
           <div className="area__num">
             <Counter to={21500} duration={2.4} />
@@ -463,8 +461,6 @@ export function Spotlights() {
   const { scrollYProgress } = useScroll({ target: wrap, offset: ["start start", "end end"] });
   const x = useRange(scrollYProgress, [0, 1], [0, -dist]);
   const barX = useRange(scrollYProgress, [0, 1], [0, 1]);
-  const [active, setActive] = useState(0);
-  useMotionValueEvent(scrollYProgress, "change", (v) => setActive(Math.min(spotlights.length - 1, Math.floor(v * spotlights.length))));
 
   useEffect(() => {
     const measure = () => {
@@ -487,24 +483,20 @@ export function Spotlights() {
       <div className="spot__sticky">
         <div className="container spot__head">
           <div>
-            <p className="eyebrow eyebrow--line">03 — Everyday luxuries</p>
+            <p className="eyebrow eyebrow--line">Everyday luxuries</p>
             <SplitText as="h2" className="display">
               An extension of home, <em>beyond its walls.</em>
             </SplitText>
           </div>
-          <p className="spot__count" aria-hidden="true">
-            <strong>{String(active + 1).padStart(2, "0")}</strong> / {String(spotlights.length).padStart(2, "0")}
-          </p>
         </div>
 
         <motion.div ref={track} className="spot__track" style={{ x }}>
-          {spotlights.map((s, i) => (
+          {spotlights.map((s) => (
             <article key={s.name} className="scard" data-cursor="View">
               <div className="scard__media">
                 <Image src={s.image} alt={s.name} fill sizes="(max-width: 960px) 80vw, 34vw" style={{ objectFit: "cover" }} />
               </div>
               <div className="scard__body">
-                <span>{String(i + 1).padStart(2, "0")}</span>
                 <h3>{s.name}</h3>
                 <p>{s.text}</p>
               </div>
@@ -531,7 +523,7 @@ export function Spotlights() {
 /* ================================================================
    Location — brochure map with a live pin + nearby times
    ================================================================ */
-export function Location({ eyebrow = "06 — Prime location" }: { eyebrow?: string }) {
+export function Location({ eyebrow = "Prime location" }: { eyebrow?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const scale = useRange(scrollYProgress, [0, 1], [1.15, 1]);

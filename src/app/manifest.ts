@@ -1,11 +1,10 @@
 import type { MetadataRoute } from "next";
-import { DEFAULT_DESCRIPTION, SITE_NAME } from "@/lib/seo";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${SITE_NAME} — 2 BHK Residences, Adalaj`,
-    short_name: SITE_NAME,
-    description: DEFAULT_DESCRIPTION,
+    name: "The Venezia — 2 BHK Residences, Adalaj",
+    short_name: "The Venezia",
+    description: "The Venezia by RM Enterprise: 280 premium 2 BHK flats in five towers on S.G. Highway, Adalaj, with 30+ amenities across 21,500 sq ft. RERA registered.",
     start_url: "/",
     display: "standalone",
     background_color: "#0a1430",

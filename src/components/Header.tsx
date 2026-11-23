@@ -114,7 +114,6 @@ export function Header() {
                     style={{ display: "block" }}
                   >
                     <TLink href={l.href} onClick={go} className={isActive(l.href) ? "is-active" : ""}>
-                      <small>{String(i + 1).padStart(2, "0")}</small>
                       {l.label}
                     </TLink>
                   </motion.span>

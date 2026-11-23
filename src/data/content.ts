@@ -60,22 +60,18 @@ export const agencies = [
 
 export const pillars = [
   {
-    n: "01",
     title: "Eye-catching architecture",
     text: "Five slender towers in pale stone and warm timber, framed by planters and a tree-lined promenade on S.G. Highway.",
   },
   {
-    n: "02",
     title: "Spacious luxury",
     text: "Every home is a generous 2 BHK with a private foyer, balcony, separate wash area and a 2'0\" wide planter edge.",
   },
   {
-    n: "03",
     title: "Room to breathe",
     text: "40% of the land is given to amenities: 21,500 sq ft of gardens, courts and clubhouse for only 280 homes.",
   },
   {
-    n: "04",
     title: "True longevity",
     text: "Earthquake-resistant RCC frame, premium fittings and I.S.I. plumbing, specified to last for generations.",
   },
@@ -83,11 +79,11 @@ export const pillars = [
 
 /** Project journey: phases only. ⚠️ Update `state` as work progresses. */
 export const journey: { phase: string; title: string; text: string; state: "done" | "active" | "next" }[] = [
-  { phase: "Phase 01", title: "Vision & design", text: "Architecture by Innovatiq Architects and landscape by Woodpeckers Studio, planned around a central garden court.", state: "done" },
-  { phase: "Phase 02", title: "RERA registration", text: "Registered with the Gandhinagar Urban Development Authority (RAA16759/230426/311230).", state: "done" },
-  { phase: "Phase 03", title: "Construction", text: "Structure by Elevateng and execution by Niran Infra Pvt. Ltd. across all five towers.", state: "active" },
-  { phase: "Phase 04", title: "Finishing", text: "Façade, interiors, landscaping and amenity fit-out.", state: "next" },
-  { phase: "Phase 05", title: "Handover", text: "Possession, with the sales team walking every owner through their new home.", state: "next" },
+  { phase: "Phase 1", title: "Vision & design", text: "Architecture by Innovatiq Architects and landscape by Woodpeckers Studio, planned around a central garden court.", state: "done" },
+  { phase: "Phase 2", title: "RERA registration", text: "Registered with the Gandhinagar Urban Development Authority (RAA16759/230426/311230).", state: "done" },
+  { phase: "Phase 3", title: "Construction", text: "Structure by Elevateng and execution by Niran Infra Pvt. Ltd. across all five towers.", state: "active" },
+  { phase: "Phase 4", title: "Finishing", text: "Façade, interiors, landscaping and amenity fit-out.", state: "next" },
+  { phase: "Phase 5", title: "Handover", text: "Possession, with the sales team walking every owner through their new home.", state: "next" },
 ];
 
 /** The amenity "chapters" used on the home page, with the brochure's own lines. */

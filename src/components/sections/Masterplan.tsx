@@ -76,7 +76,6 @@ export function Masterplan() {
                   onMouseEnter={() => setActive(a.id)}
                   onClick={() => setActive(a.id)}
                 >
-                  <span className="amenities__n">{String(i + 1).padStart(2, "0")}</span>
                   <span>
                     <strong>{a.name}</strong>
                     <small>{a.note}</small>

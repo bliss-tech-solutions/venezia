@@ -46,9 +46,6 @@ export function Accordion({
               onClick={() => setOpen(on ? null : i)}
               aria-expanded={on}
             >
-              {numbered && (
-                <span className="acc__n">{String(i + 1).padStart(2, "0")}</span>
-              )}
               <span className="acc__title">{it.title}</span>
               <span className="acc__icon" aria-hidden="true" />
             </button>
@@ -112,9 +109,6 @@ export function CampusFeatures() {
               className="campus__item"
               delay={(i % 3) * 0.08}
             >
-              <span className="campus__n">
-                {String(i + 1).padStart(2, "0")}
-              </span>
               <h3>{f.title}</h3>
               <ul>
                 {f.items.map((it) => (
@@ -320,9 +314,6 @@ const amenityIcon: Record<string, React.ReactNode> = {
 function AmenityTabs() {
   const [active, setActive] = useState(0);
   const g = amenityGroups[active];
-  const offset = amenityGroups
-    .slice(0, active)
-    .reduce((n, x) => n + x.items.length, 0);
 
   return (
     <div className="atabs">
@@ -349,9 +340,7 @@ function AmenityTabs() {
               />
             )}
             <span className="atabs__label">{grp.group}</span>
-            <span className="atabs__count">
-              {String(grp.items.length).padStart(2, "0")}
-            </span>
+            <span className="atabs__count">{grp.items.length}</span>
           </button>
         ))}
       </div>
@@ -371,9 +360,7 @@ function AmenityTabs() {
             transition={{ duration: 0.45, ease }}
           >
             <div className="atabs__head">
-              <strong className="atabs__big">
-                {String(g.items.length).padStart(2, "0")}
-              </strong>
+              <strong className="atabs__big">{g.items.length}</strong>
               <div>
                 <h3>{g.group}</h3>
                 <p>{groupNotes[g.group]}</p>
@@ -398,9 +385,6 @@ function AmenityTabs() {
                     </svg>
                   </span>
                   <span className="atile__name">{it}</span>
-                  <span className="atile__n">
-                    {String(offset + i + 1).padStart(2, "0")}
-                  </span>
                 </motion.li>
               ))}
             </ul>

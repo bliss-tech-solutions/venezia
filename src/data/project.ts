@@ -77,12 +77,12 @@ export const site = {
 
 /** Headline figures from the brochure. */
 export const highlights = [
-  { value: 14, suffix: "", pad: 2, label: "Storeys + GF", note: "Ground-floor retail" },
-  { value: 5, suffix: "", pad: 2, label: "Iconic towers", note: "Blocks A – E" },
+  { value: 14, suffix: "", pad: 0, label: "Storeys + GF", note: "Ground-floor retail" },
+  { value: 5, suffix: "", pad: 0, label: "Iconic towers", note: "Blocks A to E" },
   { value: 280, suffix: "", pad: 0, label: "Residences", note: "All 2 BHK" },
-  { value: 15, suffix: "", pad: 2, label: "Retail shops", note: "On S.G. Highway frontage" },
+  { value: 15, suffix: "", pad: 0, label: "Retail shops", note: "On S.G. Highway frontage" },
   { value: 30, suffix: "+", pad: 0, label: "Amenities", note: "21,500 sq ft dedicated" },
-  { value: 2, suffix: "", pad: 2, label: "Basement levels", note: "Allotted car parking" },
+  { value: 2, suffix: "", pad: 0, label: "Basement levels", note: "Allotted car parking" },
 ];
 
 const LIVING = "/images/b/living.jpg";
@@ -296,4 +296,4 @@ export const statusLabel: Record<Status, string> = {
   sold: "Sold",
 };
 
-export const pad = (n: number) => String(n).padStart(2, "0");
+export const pad = (n: number) => String(n);

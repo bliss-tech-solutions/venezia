@@ -31,7 +31,7 @@ export function ResidencesPreview() {
       <div className="container">
         <SectionHead
           split
-          eyebrow="04 — Residences"
+          eyebrow="Residences"
           title={
             <>
               Three plans. <em>One standard.</em>
@@ -101,9 +101,9 @@ export function ExplorerTeaser() {
   const avail = units.filter((u) => u.level === scan && u.status === "available").length;
 
   const steps = [
-    { n: "01", t: "Choose a floor", d: `Hover the building to see live availability on every level from ${pad(levels[levels.length - 1])} to ${pad(levels[0])}.` },
-    { n: "02", t: "Pick a residence", d: "The floor plate opens with all twenty homes colour-coded by status." },
-    { n: "03", t: "Step inside", d: "Orbit a 3D model of the plan, then stand in each room in 360°." },
+    { t: "Choose a floor", d: "Hover the building to see live availability on every level from Level 1 to Level 14." },
+    { t: "Pick a residence", d: "The floor plate opens with all twenty homes colour-coded by status." },
+    { t: "Step inside", d: "Orbit a 3D model of the plan, then stand in each room in 360°." },
   ];
 
   return (
@@ -111,7 +111,7 @@ export function ExplorerTeaser() {
       <div className="container teaser__grid">
         <div className="teaser__copy">
           <SectionHead
-            eyebrow="05 — Interactive explorer"
+            eyebrow="Interactive explorer"
             title={
               <>
                 Find your floor. <em>Then step inside.</em>
@@ -120,9 +120,8 @@ export function ExplorerTeaser() {
           />
           <ol className="steps">
             {steps.map((s, i) => (
-              <FadeUp as="li" key={s.n} delay={i * 0.1}>
-                <span className="steps__n">{s.n}</span>
-                <div>
+              <FadeUp as="li" key={s.t} delay={i * 0.1}>
+                <div className="steps__content">
                   <strong>{s.t}</strong>
                   <p>{s.d}</p>
                 </div>

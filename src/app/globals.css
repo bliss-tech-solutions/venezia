@@ -45,6 +45,13 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+  width: 0;
+  height: 0;
 }
 html.is-locked {
   overflow: hidden;
@@ -56,6 +63,8 @@ html:not(.is-ready) body {
 body {
   margin: 0;
   overflow-x: clip;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
   background: var(--ink);
   color: var(--text);
   font-family: var(--f-sans);
@@ -64,6 +73,11 @@ body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+  width: 0;
+  height: 0;
 }
 
 img {

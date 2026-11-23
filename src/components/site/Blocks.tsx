@@ -77,11 +77,6 @@ export function PageHero({
               </span>
             </li>
           </ol>
-          {pageNo > 0 && (
-            <span className="crumb__index" aria-hidden="true">
-              <strong>{String(pageNo).padStart(2, "0")}</strong> / {String(nav.length).padStart(2, "0")}
-            </span>
-          )}
         </motion.nav>
         <motion.p
           className="eyebrow"

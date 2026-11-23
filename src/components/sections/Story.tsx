@@ -3,7 +3,7 @@ import { site, totals, unitTypes } from "@/data/project";
 
 const stats = [
   { value: String(totals.towers), label: "Residential blocks", note: "A · B · C · D · E" },
-  { value: String(totals.levels), label: "Residential levels", note: "Levels 01 – 14" },
+  { value: String(totals.levels), label: "Residential levels", note: "Levels 1 to 14" },
   { value: String(totals.residences), label: "Residences", note: `${totals.perFloor} per floor` },
   { value: String(Object.keys(unitTypes).length), label: "Plan typologies", note: "All 2 BHK" },
 ];
@@ -13,7 +13,7 @@ export function Story() {
     <section id="story" className="section story">
       <div className="container">
         <Reveal className="story__head">
-          <p className="eyebrow">01 — The Address</p>
+          <p className="eyebrow">The Address</p>
           <h2 className="display">
             A landmark <em>defined</em> by style &amp; sophistication.
           </h2>

@@ -83,7 +83,7 @@ export function Pillars() {
         <div className="pillars__row">
           {pillars.map((p, i) => (
             <motion.button
-              key={p.n}
+              key={p.title}
               className={`pillar ${open === i ? "is-open" : ""}`}
               onMouseEnter={() => setOpen(i)}
               onFocus={() => setOpen(i)}
@@ -92,7 +92,6 @@ export function Pillars() {
               layout
               transition={{ duration: 0.7, ease }}
             >
-              <span className="pillar__n">{p.n}</span>
               <span className="pillar__title">{p.title}</span>
               <motion.span
                 className="pillar__text"

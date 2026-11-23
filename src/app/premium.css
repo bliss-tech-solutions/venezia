@@ -679,27 +679,22 @@ html.menu-open {
   border-top: 1px solid var(--line);
 }
 .steps li {
-  display: grid;
-  grid-template-columns: 56px 1fr;
+  display: block;
   padding: 22px 0;
   border-bottom: 1px solid var(--line);
 }
-.steps__n {
-  font-family: var(--f-display);
-  font-style: normal;
-  font-size: var(--t-lg);
-  color: var(--gold-2);
-}
 .steps strong {
+  display: block;
   font-family: var(--f-display);
   font-weight: 400;
-  font-size: var(--t-lg);
-  line-height: 1.2;
+  font-size: var(--t-xl);
+  line-height: 1.25;
 }
 .steps p {
-  margin: 4px 0 0;
+  margin: 6px 0 0;
   color: var(--text-dim);
-  font-size: var(--t-sm);
+  font-size: var(--t-base);
+  line-height: 1.55;
 }
 .teaser__frame {
   position: relative;
@@ -1010,12 +1005,13 @@ html.menu-open {
 .pillar__title {
   font-family: var(--f-display);
   font-size: var(--t-xl);
-  line-height: 1.05;
+  line-height: 1.15;
 }
 .pillar__text {
   max-width: 420px;
-  font-size: var(--t-sm);
-  color: rgba(255, 255, 255, 0.78);
+  font-size: var(--t-base);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.88);
   min-height: 4.8em;
 }
 .pillar:not(.is-open) .pillar__text {

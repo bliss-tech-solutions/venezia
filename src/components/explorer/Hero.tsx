@@ -201,7 +201,7 @@ export function Hero() {
           Available only
         </label>
         <span className="filters__meta">
-          {totals.residences} residences · {totals.towers} towers · Levels {pad(levels[levels.length - 1])}–{pad(levels[0])}
+          {totals.residences} residences · {totals.towers} towers · Levels 1 to 14
         </span>
       </motion.div>
 
