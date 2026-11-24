@@ -7,8 +7,8 @@ import { createContext, useContext, useEffect, useRef, useState } from "react";
 const LenisContext = createContext<Lenis | null>(null);
 export const useLenis = () => useContext(LenisContext);
 
-/** Elements that manage their own wheel / touch (explorer overlays, 360° viewer, lightbox, menus). */
-const OWN_SCROLL = ["overlay", "pano", "lightbox", "menu"];
+/** Elements that manage their own wheel / touch (explorer overlays, 360° viewer, lightbox, menus, EMI calculator). */
+const OWN_SCROLL = ["overlay", "pano", "lightbox", "menu", "emi-backdrop", "emi-modal"];
 
 /**
  * Inertial smooth scrolling. Pauses while the preloader runs, while any
@@ -24,7 +24,10 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       duration: 1.15,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      prevent: (node) => OWN_SCROLL.some((c) => node.classList?.contains(c)),
+      prevent: (node) =>
+        OWN_SCROLL.some((c) => node.classList?.contains(c)) ||
+        node.hasAttribute?.("data-lenis-prevent") ||
+        Boolean(node.closest?.("[data-lenis-prevent]")),
     });
     const loop = (t: number) => {
       l.raf(t);

@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { Wordmark } from "./Logo";
 import { useExplorer } from "./explorer/ExplorerContext";
 import { TLink } from "./site/PageTransition";
+import { EmiCalculatorModal } from "./site/EmiCalculatorModal";
 import { Magnetic, ease, easeInOut } from "./motion";
 import { nav } from "@/data/content";
 import { site } from "@/data/project";
@@ -15,6 +16,7 @@ export function Header() {
   const [solid, setSolid] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
+  const [emiOpen, setEmiOpen] = useState(false);
   const [hoverLink, setHoverLink] = useState<string | null>(null);
   const { view, close, enquire } = useExplorer();
   const lastY = useRef(0);
@@ -73,6 +75,14 @@ export function Header() {
               <span>{l.label}</span>
             </TLink>
           ))}
+          <button
+            type="button"
+            className="header__nav-emi"
+            onClick={() => setEmiOpen(true)}
+            aria-label="Calculate EMI"
+          >
+            <span>EMI Calculator</span>
+          </button>
         </nav>
 
         <Magnetic className="header__cta-wrap">
@@ -119,6 +129,26 @@ export function Header() {
                   </motion.span>
                 </span>
               ))}
+              <span className="menu__mask">
+                <motion.span
+                  initial={{ y: "110%" }}
+                  animate={{ y: 0 }}
+                  exit={{ y: "110%", transition: { duration: 0.4, ease } }}
+                  transition={{ duration: 0.9, ease, delay: 0.25 + nav.length * 0.06 }}
+                  style={{ display: "block" }}
+                >
+                  <button
+                    type="button"
+                    className="menu__nav-btn"
+                    onClick={() => {
+                      setOpen(false);
+                      setEmiOpen(true);
+                    }}
+                  >
+                    EMI Calculator
+                  </button>
+                </motion.span>
+              </span>
             </nav>
             <motion.div
               className="menu__foot"
@@ -141,6 +171,8 @@ export function Header() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <EmiCalculatorModal open={emiOpen} onClose={() => setEmiOpen(false)} />
     </>
   );
 }

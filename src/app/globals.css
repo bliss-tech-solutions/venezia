@@ -2891,3 +2891,650 @@ button:disabled {
   stroke: #fff;
   filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.55));
 }
+
+/* =====================================================================
+   EMI CALCULATOR MODAL & CONTROLS
+   ===================================================================== */
+
+.header__nav {
+  align-items: center;
+}
+
+.header__nav-emi {
+  position: relative;
+  font-family: var(--f-sans);
+  font-size: var(--t-micro);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 6px 14px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.header__nav-emi:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: #ffffff;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.menu__nav-btn {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  padding: 10px 0;
+  font-family: var(--f-display);
+  font-size: var(--t-2xl);
+  font-weight: 300;
+  line-height: 1.1;
+  color: rgba(255, 255, 255, 0.85);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  transition: color 0.3s var(--ease);
+}
+
+.menu__nav-btn:hover {
+  color: #ffffff;
+}
+
+/* Modal Overlay & Card — The Venezia Luxury Theme */
+.emi-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999999 !important;
+  background: rgba(4, 9, 24, 0.84) !important;
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+.emi-modal {
+  position: relative;
+  width: 100%;
+  max-width: 860px;
+  max-height: 90vh;
+  background: radial-gradient(130% 100% at 50% 0%, #152b5e 0%, var(--ink) 55%, #050d22 100%) !important;
+  border-radius: 16px;
+  border: 1px solid rgba(143, 211, 238, 0.22);
+  box-shadow: 0 35px 80px -15px rgba(0, 0, 0, 0.85), 0 0 50px rgba(143, 211, 238, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  display: flex !important;
+  flex-direction: column;
+  overflow: hidden;
+  margin: auto;
+  color: #ffffff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+.emi-modal__header {
+  padding: 28px 36px 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.emi-modal__eyebrow {
+  color: var(--sky);
+  font-size: var(--t-micro);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+.emi-modal__title {
+  font-family: var(--f-display);
+  font-size: clamp(26px, 1.5vw + 20px, 34px);
+  font-weight: 300;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+
+.emi-modal__title em {
+  color: var(--sky);
+  font-style: normal;
+}
+
+.emi-close-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.emi-close-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.emi-modal__body {
+  padding: 26px 36px 36px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.emi-modal__body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Quick Presets */
+.emi-presets {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  flex-wrap: wrap;
+}
+
+.emi-presets__label {
+  font-size: var(--t-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.emi-presets__pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.emi-preset-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  padding: 4px 14px;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--f-sans);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.emi-preset-btn:hover {
+  background: rgba(143, 211, 238, 0.12);
+  border-color: var(--sky);
+  color: #ffffff;
+}
+
+.emi-preset-btn.is-active {
+  background: rgba(143, 211, 238, 0.2);
+  border-color: var(--sky);
+  color: var(--sky);
+  font-weight: 600;
+}
+
+/* Grid layout */
+.emi-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 40px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .emi-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .emi-modal__header {
+    padding: 20px 20px 14px;
+  }
+  .emi-modal__body {
+    padding: 20px 20px 28px;
+  }
+}
+
+/* Controls & Badges */
+.emi-control {
+  margin-bottom: 24px;
+}
+
+.emi-control__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.emi-label {
+  font-family: var(--f-sans);
+  font-size: 14.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.02em;
+}
+
+.emi-badge {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(143, 211, 238, 0.08);
+  border-radius: 8px;
+  padding: 5px 12px;
+  border: 1px solid rgba(143, 211, 238, 0.25);
+  transition: all 0.25s ease;
+}
+
+.emi-badge:focus-within {
+  border-color: var(--sky);
+  box-shadow: 0 0 0 3px rgba(143, 211, 238, 0.18);
+  background: rgba(143, 211, 238, 0.14);
+}
+
+.emi-badge__symbol {
+  font-family: var(--f-sans);
+  font-weight: 700;
+  color: var(--sky);
+  font-size: 14.5px;
+  user-select: none;
+}
+
+.emi-badge__input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: var(--f-sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: right;
+  width: 95px;
+  padding: 0 4px;
+}
+
+.emi-badge__input--rate {
+  width: 48px;
+  text-align: left;
+}
+
+.emi-badge__input--tenure {
+  width: 36px;
+  text-align: left;
+}
+
+/* Range Slider */
+.emi-slider-wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 20px;
+}
+
+.emi-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+  margin: 0;
+}
+
+.emi-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2.5px solid #8fd3ee;
+  box-shadow: 0 0 10px rgba(143, 211, 238, 0.6);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.emi-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 16px rgba(143, 211, 238, 0.85);
+}
+
+.emi-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2.5px solid #8fd3ee;
+  box-shadow: 0 0 10px rgba(143, 211, 238, 0.6);
+  cursor: pointer;
+}
+
+/* Summary Rows */
+.emi-summary {
+  margin-top: 32px;
+}
+
+.emi-summary__card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.emi-summary__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14.5px;
+}
+
+.emi-summary__row--highlight {
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 2px;
+}
+
+.emi-summary__label {
+  font-family: var(--f-sans);
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 400;
+}
+
+.emi-summary__value {
+  font-family: var(--f-sans);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 15.5px;
+}
+
+.emi-summary__value--highlight {
+  color: var(--sky);
+  font-size: 20px;
+  font-weight: 700;
+  font-family: var(--f-sans);
+}
+
+/* Right Side: Donut, Legend, CTA */
+.emi-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.emi-legend {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: flex-end;
+  width: 100%;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.emi-legend__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.emi-legend__dot {
+  width: 16px;
+  height: 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.emi-legend__dot--principal {
+  background: #25427b;
+}
+
+.emi-legend__dot--interest {
+  background: #8fd3ee;
+  box-shadow: 0 0 8px rgba(143, 211, 238, 0.4);
+}
+
+.emi-chart-box {
+  position: relative;
+  width: 210px;
+  height: 210px;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emi-chart-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.emi-chart-center {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.emi-chart-center__val {
+  font-family: var(--f-display);
+  font-size: 26px;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.emi-chart-center__sub {
+  font-family: var(--f-sans);
+  font-size: 10.5px;
+  color: var(--sky);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-top: 4px;
+}
+
+.emi-cta-box {
+  margin-top: 8px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.emi-cta-box__text {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0;
+}
+
+.emi-cta-box__btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Amortization Details Toggle */
+.emi-amort-toggle {
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.emi-amort-toggle__text {
+  font-family: var(--f-sans);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  text-align: center;
+}
+
+.emi-amort-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(143, 211, 238, 0.35);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--sky);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.emi-amort-btn:hover {
+  border-color: var(--sky);
+  background: rgba(143, 211, 238, 0.14);
+  transform: scale(1.06);
+  box-shadow: 0 0 16px rgba(143, 211, 238, 0.25);
+}
+
+/* Amortization Table Section */
+.emi-amort-section {
+  margin-top: 24px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.emi-amort-years {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.emi-year-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(15, 37, 86, 0.25);
+}
+
+.emi-year-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.emi-year-header:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.emi-year-title {
+  font-family: var(--f-display);
+  font-size: 18px;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+
+.emi-year-chevron {
+  color: var(--sky);
+  transition: transform 0.25s ease;
+}
+
+.emi-year-chevron.is-open {
+  transform: rotate(180deg);
+}
+
+.emi-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.emi-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--f-sans);
+  font-size: 13.5px;
+  text-align: right;
+}
+
+.emi-table th {
+  background: rgba(143, 211, 238, 0.1);
+  color: var(--sky);
+  font-weight: 600;
+  padding: 12px 18px;
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid rgba(143, 211, 238, 0.2);
+}
+
+.emi-table th:first-child,
+.emi-table td:first-child {
+  text-align: left;
+}
+
+.emi-table td {
+  padding: 13px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.8);
+  white-space: nowrap;
+}
+
+.emi-td--month {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.emi-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.emi-table tbody tr:hover {
+  background: rgba(143, 211, 238, 0.04);
+}
+
